@@ -3,7 +3,8 @@ from google_auth_oauthlib.flow import InstalledAppFlow
 from google.auth.transport.requests import Request
 from google.oauth2.credentials import Credentials
 import os
-from config import SCOPES, CREDENTIALS_FILE, TOKEN_FILE
+from src.config import SCOPES, CREDENTIALS_FILE, TOKEN_FILE
+
 
 
 
