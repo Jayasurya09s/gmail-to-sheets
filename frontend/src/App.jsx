@@ -132,7 +132,7 @@ function App() {
 
         {/* Footer */}
         <footer className="app-footer">
-          <p>Built with React & FastAPI • Portfolio Demo</p>
+          <p>Built with React & FastAPI </p>
         </footer>
       </div>
     </div>

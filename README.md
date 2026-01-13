@@ -92,6 +92,39 @@ gmail-to-sheets/
 └── state.json
 ```
 
+## 🚀 Quick Start
+
+- Backend: `python src/main.py` (first run will open OAuth consent)  
+- API only (FastAPI): `uvicorn src.api:app --reload`  
+- Frontend (Vite/React): `cd frontend && npm install && npm run dev`  
+- Open the UI at http://localhost:5173 and click **Sync Emails**.
+
+## 🧭 Run the Apps (Dev)
+
+- **Backend API**: `uvicorn src.api:app --reload --port 8000`  
+   - Depends on `credentials/credentials.json` and writes `token.json` and `state.json` locally.  
+- **Frontend**: `npm run dev -- --host --port 5173` inside `frontend/`  
+   - The frontend calls `http://127.0.0.1:8000/sync` (see API Reference).  
+
+## 🔌 API Reference (FastAPI)
+
+| Method | Path  | Description                | Response (success)                                |
+|--------|-------|----------------------------|---------------------------------------------------|
+| POST   | /sync | Triggers Gmail → Sheets sync | `{ status: "success", processed_emails, timestamp }` |
+
+**Notes:**
+- CORS is enabled for `localhost/127.0.0.1:5173` by default.  
+- The backend returns `status: "error"` with a message if something fails.  
+
+## 🛠️ Configuration
+
+- `src/config.py`  
+   - `SCOPES`: Gmail/Sheets scopes (leave as-is unless you add new features)  
+   - `SPREADSHEET_ID`: Set to your Sheet ID  
+   - `MAX_CELL_LENGTH`: Truncation length for large email bodies  
+- Frontend API base: hard-coded to `http://127.0.0.1:8000/sync` in `frontend/src/App.jsx`  
+   - If you deploy the backend elsewhere, update that URL accordingly.
+
 ## ⚙️ Setup Instructions (Step-by-Step)
 
 ### 1️⃣ Clone the Repository
